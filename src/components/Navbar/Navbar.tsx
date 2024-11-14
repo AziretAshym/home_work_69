@@ -1,13 +1,14 @@
 import React from 'react';
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <>
       <AppBar position="static" sx={{marginBottom: '50px'}}>
         <Toolbar>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-            TV Shows
+          <Typography variant="h4" sx={{ flexGrow: 1, textDecoration: "none"}}>
+            <NavLink to={"/"}> TV Shows</NavLink>
           </Typography>
           <IconButton
             size="large"

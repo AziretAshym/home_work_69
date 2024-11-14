@@ -3,6 +3,9 @@ export interface IShow {
   name: string
   genres: string[];
   summary: string;
+  premiered: string;
+  runtime: string;
+
   image?: {
     medium: string;
   };
