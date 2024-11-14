@@ -3,17 +3,20 @@ import IShow from '../../types';
 import { FormControl, Input, InputLabel, Typography } from '@mui/material';
 import { fetchShows } from '../../store/thunks/shows/showsThunks.ts';
 import { useAppDispatch } from '../../app/hooks.ts';
+import Shows from '../Shows/Shows.tsx';
 
 
 const SearchForm = () => {
   const dispatch = useAppDispatch();
-  const [show, setShow] = useState<IShow>('');
+  const [shows, setShows] = useState<IShow>('');
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setShow(value);
+    setShows(value);
 
-    if (value) dispatch(fetchShows(value));
+    if (value) {
+      dispatch(fetchShows(value));
+    }
   };
 
 
@@ -27,17 +30,18 @@ const SearchForm = () => {
       >
         TV Show Center
       </Typography>
-      <FormControl fullWidth>
+      <FormControl fullWidth sx={{marginBottom: "60px"}}>
         <InputLabel htmlFor="show-input">Enter show name</InputLabel>
         <Input
           id="show-input"
           type="text"
           name="title"
-          value={show}
+          value={shows}
           onChange={onChangeInput}
 
         />
       </FormControl>
+      <Shows shows={shows} />
     </>
   );
 };
