@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import IShow from '../../types';
-import { fetchShows, fetchOneShow } from '../thunks/shows/showsThunks.ts';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import IShow from "../../types";
+import { fetchShows, fetchOneShow } from "../thunks/shows/showsThunks.ts";
 
 interface ShowState {
   shows: IShow[];
@@ -17,7 +17,7 @@ const initialState: ShowState = {
 };
 
 const showSlice = createSlice({
-  name: 'show',
+  name: "show",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -25,10 +25,13 @@ const showSlice = createSlice({
       .addCase(fetchShows.pending, (state) => {
         state.fetchAllLoading = true;
       })
-      .addCase(fetchShows.fulfilled, (state, action: PayloadAction<IShow[]>) => {
-        state.fetchAllLoading = false;
-        state.shows = action.payload;
-      })
+      .addCase(
+        fetchShows.fulfilled,
+        (state, action: PayloadAction<IShow[]>) => {
+          state.fetchAllLoading = false;
+          state.shows = action.payload;
+        },
+      )
       .addCase(fetchShows.rejected, (state) => {
         state.fetchAllLoading = false;
       })
@@ -37,15 +40,16 @@ const showSlice = createSlice({
         state.fetchOneShowLoading = true;
         state.selectedShow = null;
       })
-      .addCase(fetchOneShow.fulfilled, (state, action: PayloadAction<IShow[]>) => {
-        state.fetchOneShowLoading = false;
-        state.selectedShow = action.payload;
-      })
+      .addCase(
+        fetchOneShow.fulfilled,
+        (state, action: PayloadAction<IShow[]>) => {
+          state.fetchOneShowLoading = false;
+          state.selectedShow = action.payload;
+        },
+      )
       .addCase(fetchOneShow.rejected, (state) => {
         state.fetchOneShowLoading = false;
-      })
-
-
+      });
   },
 });
 

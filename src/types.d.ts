@@ -1,6 +1,6 @@
 export interface IShow {
   id: string;
-  name: string
+  name: string;
   genres: string[];
   summary: string;
   premiered: string;
